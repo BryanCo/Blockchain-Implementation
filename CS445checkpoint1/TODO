@@ -1,0 +1,4 @@
+class Block, Chunk, and SimplexNoise are given.
+
+needed Class generateChunk()
+       apply teexture map to blocks
