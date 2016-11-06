@@ -28,6 +28,7 @@ public class FPCameraController {
     private Vector3f lPosition = null;
     private float yaw = 0.0f;
     private float pitch = 0.0f;
+    private Chunk chunk;
     
     //this is the constructor
     public FPCameraController(float x, float y, float z){
@@ -36,6 +37,7 @@ public class FPCameraController {
         lPosition.x = 0f;
         lPosition.y = 15f;
         lPosition.z = 0f;
+        chunk = new Chunk(0,0,0);
     }
     
     //increment the camera's current yaw rotation
@@ -171,12 +173,11 @@ public class FPCameraController {
             //this line instructs openGL to consider the polygon's 
             //distance from the user and only render the surface closest 
             //to the user.
-            glEnable(GL_DEPTH_TEST);
             
             glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
             
             //you would draw your scene here.
-            render();
+            chunk.render();
             //draw the buffer to the screen
             Display.update();
             Display.sync(60);
