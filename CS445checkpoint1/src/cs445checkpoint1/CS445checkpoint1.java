@@ -23,7 +23,7 @@ import org.lwjgl.util.glu.GLU;
 
 public class CS445checkpoint1 {
     
-    private FPCameraController fp = new FPCameraController(0f,0f,0f);
+    private FPCameraController fp;
     private DisplayMode displayMode;
 
     
@@ -32,6 +32,7 @@ public class CS445checkpoint1 {
         try {
             createWindow();
             initGL();
+            fp = new FPCameraController(0f,0f,0f);
             fp.gameLoop();
         } catch (Exception e) {
             e.printStackTrace();
@@ -64,6 +65,11 @@ public class CS445checkpoint1 {
         displayMode.getHeight(), 0.1f, 300.0f);
         glMatrixMode(GL_MODELVIEW);
         glHint(GL_PERSPECTIVE_CORRECTION_HINT, GL_NICEST);
+        glEnableClientState(GL_VERTEX_ARRAY);
+        glEnableClientState(GL_COLOR_ARRAY);
+        glEnable(GL_DEPTH_TEST);
+        glEnable(GL_TEXTURE_2D);
+        glEnableClientState (GL_TEXTURE_COORD_ARRAY);
     }
     
     //This is the Main method
