@@ -52,7 +52,7 @@ public class Chunk {
         for (float x = 0; x < CHUNK_SIZE; x++) {
             for (float z = 0; z < CHUNK_SIZE; z++) {
                 float height = (startY + 10 + (int)( 4 * n.getNoise((int)x,(int)z)));
-                System.out.println(height);
+                //System.out.println(height);
                 for(float y = 0; y <= height; y++){
                     VertexPositionData.put(createCube((float)(startX + x * CUBE_LENGTH),
                                                               (float)(y*CUBE_LENGTH+ (int)(CHUNK_SIZE*.8)),
@@ -164,38 +164,38 @@ public class Chunk {
                     x + offset*4, y + offset*1,
                     x + offset*3, y + offset*1
                 };  
-            case 3://dirt
+            case 1://sand
                 return new float[] {
                     //Top
-                    x + offset*3, y + offset*1,
+                    x + offset*3, y + offset*2,
+                    x + offset*2, y + offset*2,
                     x + offset*2, y + offset*1,
-                    x + offset*2, y + offset*0,
-                    x + offset*3, y + offset*0,
+                    x + offset*3, y + offset*1,
                     //bottom
-                    x + offset*3, y + offset*1,
+                    x + offset*3, y + offset*2,
+                    x + offset*2, y + offset*2,
                     x + offset*2, y + offset*1,
-                    x + offset*2, y + offset*0,
-                    x + offset*3, y + offset*0,
-                    //side
-                    x + offset*2, y + offset*0,
-                    x + offset*3, y + offset*0,
                     x + offset*3, y + offset*1,
-                    x + offset*4, y + offset*1,
                     //side
-                    x + offset*3, y + offset*1,
+                    x + offset*3, y + offset*2,
+                    x + offset*2, y + offset*2,
                     x + offset*2, y + offset*1,
-                    x + offset*2, y + offset*0,
-                    x + offset*3, y + offset*0,
-                    //side
-                    x + offset*2, y + offset*0,
-                    x + offset*3, y + offset*0,
                     x + offset*3, y + offset*1,
+                    //side
+                    x + offset*3, y + offset*2,
+                    x + offset*2, y + offset*2,
                     x + offset*2, y + offset*1,
-                    //side
-                    x + offset*2, y + offset*0,
-                    x + offset*3, y + offset*0,
                     x + offset*3, y + offset*1,
-                    x + offset*2, y + offset*1
+                    //side
+                    x + offset*3, y + offset*2,
+                    x + offset*2, y + offset*2,
+                    x + offset*2, y + offset*1,
+                    x + offset*3, y + offset*1,
+                    //side
+                    x + offset*3, y + offset*2,
+                    x + offset*2, y + offset*2,
+                    x + offset*2, y + offset*1,
+                    x + offset*3, y + offset*1
                 };
             case 2://water 15,13
                 return new float[] {
@@ -229,6 +229,72 @@ public class Chunk {
                     x + offset*15, y + offset*12,
                     x + offset*15, y + offset*13,
                     x + offset*14, y + offset*13
+                };
+            case 3://dirt
+                return new float[] {
+                    //Top
+                    x + offset*3, y + offset*1,
+                    x + offset*2, y + offset*1,
+                    x + offset*2, y + offset*0,
+                    x + offset*3, y + offset*0,
+                    //bottom
+                    x + offset*3, y + offset*1,
+                    x + offset*2, y + offset*1,
+                    x + offset*2, y + offset*0,
+                    x + offset*3, y + offset*0,
+                    //side
+                    x + offset*2, y + offset*0,
+                    x + offset*3, y + offset*0,
+                    x + offset*3, y + offset*1,
+                    x + offset*4, y + offset*1,
+                    //side
+                    x + offset*3, y + offset*1,
+                    x + offset*2, y + offset*1,
+                    x + offset*2, y + offset*0,
+                    x + offset*3, y + offset*0,
+                    //side
+                    x + offset*2, y + offset*0,
+                    x + offset*3, y + offset*0,
+                    x + offset*3, y + offset*1,
+                    x + offset*2, y + offset*1,
+                    //side
+                    x + offset*2, y + offset*0,
+                    x + offset*3, y + offset*0,
+                    x + offset*3, y + offset*1,
+                    x + offset*2, y + offset*1
+                };
+            case 4://stone
+                return new float[] {
+                    //Top
+                    x + offset*2, y + offset*1,
+                    x + offset*1, y + offset*1,
+                    x + offset*1, y + offset*0,
+                    x + offset*2, y + offset*0,
+                    //bottom
+                    x + offset*2, y + offset*1,
+                    x + offset*1, y + offset*1,
+                    x + offset*1, y + offset*0,
+                    x + offset*2, y + offset*0,
+                    //side
+                    x + offset*2, y + offset*1,
+                    x + offset*1, y + offset*1,
+                    x + offset*1, y + offset*0,
+                    x + offset*2, y + offset*0,
+                    //side
+                    x + offset*2, y + offset*1,
+                    x + offset*1, y + offset*1,
+                    x + offset*1, y + offset*0,
+                    x + offset*2, y + offset*0,
+                    //side
+                    x + offset*2, y + offset*1,
+                    x + offset*1, y + offset*1,
+                    x + offset*1, y + offset*0,
+                    x + offset*2, y + offset*0,
+                    //side
+                    x + offset*2, y + offset*1,
+                    x + offset*1, y + offset*1,
+                    x + offset*1, y + offset*0,
+                    x + offset*2, y + offset*0
                 };
                 
             case 5://bedrock
@@ -315,12 +381,16 @@ public class Chunk {
         for (int x = 0; x < CHUNK_SIZE; x++) {
             for (int y = 0; y < CHUNK_SIZE; y++) {
                 for (int z = 0; z < CHUNK_SIZE; z++) {
-                    if(r.nextFloat()>0.7f){
+                    if(Math.round(r.nextFloat()*5) == 0){
                         Blocks[x][y][z] = new Block(Block.BlockType.BlockType_Grass);
-                    }else if(r.nextFloat()>0.4f){
+                    }else if(Math.round(r.nextFloat()*5) == 1){
                         Blocks[x][y][z] = new Block(Block.BlockType.BlockType_Dirt);
-                    }else if(r.nextFloat()>0.2f){
+                    }else if(Math.round(r.nextFloat()*5) == 2){
+                        Blocks[x][y][z] = new Block(Block.BlockType.BlockType_Sand);
+                    }else if(Math.round(r.nextFloat()*5) == 3){
                         Blocks[x][y][z] = new Block(Block.BlockType.BlockType_Water);
+                    }else if(Math.round(r.nextFloat()*5) == 4){
+                        Blocks[x][y][z] = new Block(Block.BlockType.BlockType_Stone);
                     }else{
                         Blocks[x][y][z] = new Block(Block.BlockType.BlockType_Bedrock);
                     }
