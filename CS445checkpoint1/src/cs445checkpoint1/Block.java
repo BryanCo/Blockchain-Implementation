@@ -1,3 +1,17 @@
+/***************************************************************
+* file: Block.java
+* Group "Generic Group Name"
+*       Bryan Commentz
+*       Taylor Stiles
+*       Zahy Abou-Diab  
+* class: CS 445 - Computer Graphics
+*
+* assignment: Project Checkpoint 2
+* date last modified: 11/14/2016
+*
+* purpose: This class defines the Block object.
+****************************************************************/ 
+
 package cs445checkpoint1;
 
 public class Block {

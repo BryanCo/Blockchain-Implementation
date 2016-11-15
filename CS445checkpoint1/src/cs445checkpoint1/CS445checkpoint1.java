@@ -1,17 +1,18 @@
 /***************************************************************
 * file: CS445checkpoint1.java
-* Group "Generic Group Name
+* Group "Generic Group Name"
 *       Bryan Commentz
 *       Taylor Stiles
 *       Zahy Abou-Diab  
 * class: CS 445 - Computer Graphics
 *
-* assignment: Project Checkpoint 1
-* date last modified: 10/31/2016
+* assignment: Project Checkpoint 2
+* date last modified: 11/14/2016
 *
-* purpose: At this point the program creates a window with a 
-* multicolored cube and a movable camera.
-* This is strongly based on the code given in class slides. 
+* purpose: At this checkpoint the program creates a window with 
+* a chunk.  The top layer of the chunk is randomly generated 
+* using Simplex Noise. The cubes are textured with the given
+* texture map.
 ****************************************************************/ 
 
 package cs445checkpoint1;
@@ -67,7 +68,12 @@ public class CS445checkpoint1 {
         glHint(GL_PERSPECTIVE_CORRECTION_HINT, GL_NICEST);
         glEnableClientState(GL_VERTEX_ARRAY);
         glEnableClientState(GL_COLOR_ARRAY);
+        
+        //this line instructs openGL to consider the polygon's 
+        //distance from the user and only render the surface closest 
+        //to the user.
         glEnable(GL_DEPTH_TEST);
+        
         glEnable(GL_TEXTURE_2D);
         glEnableClientState (GL_TEXTURE_COORD_ARRAY);
     }

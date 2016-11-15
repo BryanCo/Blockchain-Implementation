@@ -1,3 +1,19 @@
+/***************************************************************
+* file: Chunk.java
+* Group "Generic Group Name"
+*       Bryan Commentz
+*       Taylor Stiles
+*       Zahy Abou-Diab  
+* class: CS 445 - Computer Graphics
+*
+* assignment: Project Checkpoint 2
+* date last modified: 11/14/2016
+*
+* purpose: Following the classroom demonstration, this class
+* builds a chunk of random block composition and a jagged top 
+* defined by a Simplex Noise map.  
+****************************************************************/ 
+
 package cs445checkpoint1;
 
 import java.nio.FloatBuffer;
@@ -372,7 +388,7 @@ public class Chunk {
         }
         catch(Exception e)
         {
-            System.out.print("ER-ROAR!");
+            System.out.print("Error loading textures!");
         }
         
         r= new Random();

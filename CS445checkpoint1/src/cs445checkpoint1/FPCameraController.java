@@ -1,16 +1,19 @@
 /***************************************************************
 * file: FPCameraController.java
-* Group "Generic Group Name
+* Group "Generic Group Name"
 *       Bryan Commentz
 *       Taylor Stiles
 *       Zahy Abou-Diab 
 * class: CS 445 - Computer Graphics
 *
-* assignment: Project Checkpoint 1
-* date last modified: 10/31/2016
+* assignment: Project Checkpoint 2
+* date last modified: 11/14/2016
 *
-* purpose: At this point the program creates a window with a 
-* multicolored cube and a movable camera.
+* purpose: At this checkpoint the program creates a window with 
+* a chunk.  The top layer of the chunk is randomly generated 
+* using Simplex Noise. The cubes are textured with the given
+* texture map.
+* 
 * This is largely repurposed, but modified code from 
 * the class slides.
 ****************************************************************/ 
@@ -98,7 +101,7 @@ public class FPCameraController {
         position.y += distance;
     }
     
-    //translates and rotate the matrix so that it looks through the camera
+    //translates and rotates the matrix so that it looks through the camera
     //this does basically what gluLookAt() does
     public void lookThrough()
     {
@@ -129,55 +132,69 @@ public class FPCameraController {
         {
             time = Sys.getTime();
             lastTime = time;
+            
             //distance in mouse movement
             //from the last getDX() call.
             dx = Mouse.getDX();
+            
             //distance in mouse movement
             //from the last getDY() call.
             dy = Mouse.getDY();
-            //controll camera yaw from x movement fromt the mouse
+            
+            //control camera yaw from x movement of the mouse
             camera.yaw(dx * mouseSensitivity);
-            //controll camera pitch from y movement fromt the mouse
+            
+            //control camera pitch from y movement of the mouse
             camera.pitch(dy * mouseSensitivity);
+            
             //when passing in the distance to move
-            //we times the movementSpeed with dt this is a time scale
+            //we multiply movementSpeed by dt. This is a time scale
             //so if its a slow frame u move more then a fast frame
             //so on a slow computer you move just as fast as on a fast computer
-            if (Keyboard.isKeyDown(Keyboard.KEY_W))//move forward
+            
+            //move forward
+            if (Keyboard.isKeyDown(Keyboard.KEY_W))
             {
                 camera.walkForward(movementSpeed);
             }
-            if (Keyboard.isKeyDown(Keyboard.KEY_S))//move backwards
+            
+            //move backwards
+            if (Keyboard.isKeyDown(Keyboard.KEY_S))
             {
                 camera.walkBackwards(movementSpeed);
             }
-
-            if (Keyboard.isKeyDown(Keyboard.KEY_A)){//strafe left {
+            
+            //strafe left
+            if (Keyboard.isKeyDown(Keyboard.KEY_A)){
                 camera.strafeLeft(movementSpeed);
             }
-            if (Keyboard.isKeyDown(Keyboard.KEY_D)){//strafe right 
+            
+            //strafe right
+            if (Keyboard.isKeyDown(Keyboard.KEY_D)){ 
                 camera.strafeRight(movementSpeed);
             }
+            
+            //move up
             if (Keyboard.isKeyDown(Keyboard.KEY_SPACE)){
-                //move up {
                 camera.moveUp(movementSpeed);
             }
+            
+            //move down
             if (Keyboard.isKeyDown(Keyboard.KEY_LSHIFT)) {
                 camera.moveDown(movementSpeed);
             }
+            
             //set the modelview matrix back to the identity
             glLoadIdentity();
+            
             //look through the camera before you draw anything
             camera.lookThrough();
-            
-            //this line instructs openGL to consider the polygon's 
-            //distance from the user and only render the surface closest 
-            //to the user.
             
             glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
             
             //you would draw your scene here.
             chunk.render();
+            
             //draw the buffer to the screen
             Display.update();
             Display.sync(60);
