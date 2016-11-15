@@ -63,7 +63,9 @@ public class Chunk {
         FloatBuffer VertexTextureData = 
                 BufferUtils.createFloatBuffer((CHUNK_SIZE* CHUNK_SIZE *CHUNK_SIZE)* 6 * 12);
 
-        SimplexNoise n = new SimplexNoise(10, 0.5, 5);
+        
+        Random seed = new Random();
+        SimplexNoise n = new SimplexNoise(60, 0.5, seed.nextInt());
         
         for (float x = 0; x < CHUNK_SIZE; x++) {
             for (float z = 0; z < CHUNK_SIZE; z++) {
