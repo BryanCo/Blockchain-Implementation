@@ -1,12 +1,12 @@
 /***************************************************************
 * file: Vector3Float.java
-* Group "Generic Group Name
+* Group "Generic Group Name"
 *       Bryan Commentz
 *       Taylor Stiles
 *       Zahy Abou-Diab 
 * class: CS 445 - Computer Graphics
 *
-* assignment: Project Checkpoint 1
+* assignment: Project Checkpoint 2
 * date last modified: 10/31/2016
 *
 * purpose: This code was repurposed from the in class slide.

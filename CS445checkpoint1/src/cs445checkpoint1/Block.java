@@ -45,6 +45,9 @@ public class Block {
         Type= type;
     }
     
+    public void setBlockType(BlockType type){
+        Type= type;
+    }
     public void setCoords(float x, float y, float z){
         this.x = x;
         this.y = y;
