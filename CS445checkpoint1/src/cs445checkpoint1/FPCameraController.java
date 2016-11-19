@@ -31,13 +31,16 @@ import org.lwjgl.Sys;
 public class FPCameraController {
     private Vector3f position = null;
     private Vector3f lPosition = null;
-    private float yaw = 0.0f;
-    private float pitch = 0.0f;
+    private float yaw = 90.0f;
+    private float pitch = 30.0f;
     private Chunk chunk;
     
     //this is the constructor
     public FPCameraController(float x, float y, float z){
         position = new Vector3f(x, y, z);
+        position.x = 10f;
+        position.y = -60f;
+        position.z = -30f;
         lPosition = new Vector3f(x, y, -z);
         lPosition.x = 30f;
         lPosition.y = 70f;
@@ -62,10 +65,6 @@ public class FPCameraController {
         float zOffset = distance * (float)Math.cos(Math.toRadians(yaw));
         position.x -= xOffset;
         position.z += zOffset;
-        //FloatBuffer lightPosition = BufferUtils.createFloatBuffer(4);
-        //lightPosition.put(lPosition.x+=xOffset).put(
-        //            lPosition.y).put(lPosition.z-=zOffset).put(1.0f).flip();
-        //glLight(GL_LIGHT0, GL_POSITION, lightPosition);
     }
     
     //moves the camera backward relative to its current rotation (yaw)
@@ -75,12 +74,8 @@ public class FPCameraController {
         float zOffset = distance * (float)Math.cos(Math.toRadians(yaw));
         position.x += xOffset;
         position.z -= zOffset;
-        //FloatBuffer lightPosition = BufferUtils.createFloatBuffer(4);
-        //lightPosition.put(lPosition.x-=xOffset).put(
-        //            lPosition.y).put(lPosition.z+=zOffset).put(1.0f).flip();
-        //glLight(GL_LIGHT0, GL_POSITION, lightPosition);
     }
-    
+     
     //strafes the camera left relative to its current rotation (yaw)
     public void strafeLeft(float distance)
     {
@@ -88,10 +83,6 @@ public class FPCameraController {
         float zOffset = distance * (float)Math.cos(Math.toRadians(yaw-90));
         position.x -= xOffset;
         position.z += zOffset;
-        //FloatBuffer lightPosition = BufferUtils.createFloatBuffer(4);
-        //lightPosition.put(lPosition.x+=xOffset).put(
-        //            lPosition.y).put(lPosition.z-=zOffset).put(1.0f).flip();
-        //glLight(GL_LIGHT0, GL_POSITION, lightPosition);
     }
     
     //strafes the camera right relative to its current rotation (yaw)
@@ -101,10 +92,35 @@ public class FPCameraController {
         float zOffset = distance * (float)Math.cos(Math.toRadians(yaw+90));
         position.x -= xOffset;
         position.z += zOffset;
-        //FloatBuffer lightPosition = BufferUtils.createFloatBuffer(4);
-        //lightPosition.put(lPosition.x+=xOffset).put(
-        //            lPosition.y).put(lPosition.z-=zOffset).put(1.0f).flip();
-        //glLight(GL_LIGHT0, GL_POSITION, lightPosition);
+    }
+    
+    public void moveLightZMinus(float distance){
+        FloatBuffer lightPosition = BufferUtils.createFloatBuffer(4);
+        lightPosition.put(lPosition.x).put(
+                    lPosition.y).put(lPosition.z-=distance).put(1.0f).flip();
+        glLight(GL_LIGHT0, GL_POSITION, lightPosition);
+    }
+    
+    public void moveLightZPlus(float distance){
+        FloatBuffer lightPosition = BufferUtils.createFloatBuffer(4);
+        lightPosition.put(lPosition.x).put(
+                    lPosition.y).put(lPosition.z+=distance).put(1.0f).flip();
+        glLight(GL_LIGHT0, GL_POSITION, lightPosition);
+    }
+    
+    
+    public void moveLightXPlus(float distance){
+        FloatBuffer lightPosition = BufferUtils.createFloatBuffer(4);
+        lightPosition.put(lPosition.x+=distance).put(
+                    lPosition.y).put(lPosition.z).put(1.0f).flip();
+        glLight(GL_LIGHT0, GL_POSITION, lightPosition);
+    }
+    
+    public void moveLightXMinus(float distance){
+        FloatBuffer lightPosition = BufferUtils.createFloatBuffer(4);
+        lightPosition.put(lPosition.x-=distance).put(
+                    lPosition.y).put(lPosition.z).put(1.0f).flip();
+        glLight(GL_LIGHT0, GL_POSITION, lightPosition);
     }
     
     //moves the camera up relative to its current rotation (yaw)
@@ -205,6 +221,22 @@ public class FPCameraController {
             //move down
             if (Keyboard.isKeyDown(Keyboard.KEY_LSHIFT)) {
                 camera.moveDown(movementSpeed);
+            }
+            
+            if (Keyboard.isKeyDown(Keyboard.KEY_J)) {
+                camera.moveLightZMinus(movementSpeed);
+            }
+            
+            if (Keyboard.isKeyDown(Keyboard.KEY_L)) {
+                camera.moveLightZPlus(movementSpeed);
+            }
+            
+            if (Keyboard.isKeyDown(Keyboard.KEY_K)) {
+                camera.moveLightXMinus(movementSpeed);
+            }
+            
+            if (Keyboard.isKeyDown(Keyboard.KEY_I)) {
+                camera.moveLightXPlus(movementSpeed);
             }
             
             //set the modelview matrix back to the identity
