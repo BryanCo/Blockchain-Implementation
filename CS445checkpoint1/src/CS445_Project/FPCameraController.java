@@ -17,7 +17,7 @@
 * This is largely repurposed, but modified code from 
 * the class slides.
 ****************************************************************/ 
-package cs445checkpoint1;
+package CS445_Project;
 
 import java.nio.FloatBuffer;
 import org.lwjgl.BufferUtils;

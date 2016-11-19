@@ -8,7 +8,7 @@
 * This file was provided by the professor!
 ****************************************************************/ 
 
-package cs445checkpoint1;
+package CS445_Project;
 
 import java.util.Random;
 

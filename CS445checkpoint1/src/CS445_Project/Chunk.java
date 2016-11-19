@@ -14,7 +14,7 @@
 * defined by a Simplex Noise map.  
 ****************************************************************/ 
 
-package cs445checkpoint1;
+package CS445_Project;
 
 import java.nio.FloatBuffer;
 import java.util.Random;

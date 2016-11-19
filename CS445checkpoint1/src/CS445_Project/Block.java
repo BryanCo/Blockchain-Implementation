@@ -12,7 +12,7 @@
 * purpose: This class defines the Block object.
 ****************************************************************/ 
 
-package cs445checkpoint1;
+package CS445_Project;
 
 public class Block {
 

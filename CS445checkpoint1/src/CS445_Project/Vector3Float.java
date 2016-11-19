@@ -12,7 +12,7 @@
 * purpose: This code was repurposed from the in class slide.
 ****************************************************************/ 
 
-package cs445checkpoint1;
+package CS445_Project;
 
 public class Vector3Float {
     public float x, y, z;

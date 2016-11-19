@@ -1,5 +1,5 @@
 /***************************************************************
-* file: CS445checkpoint1.java
+* file: CS445_Project.java
 * Group "Generic Group Name"
 *       Bryan Commentz
 *       Taylor Stiles
@@ -15,7 +15,7 @@
 * texture map.
 ****************************************************************/ 
 
-package cs445checkpoint1;
+package CS445_Project;
 
 import org.lwjgl.opengl.Display;
 import org.lwjgl.opengl.DisplayMode;
@@ -24,7 +24,7 @@ import org.lwjgl.util.glu.GLU;
 import java.nio.FloatBuffer;
 import org.lwjgl.BufferUtils;
 
-public class CS445checkpoint1 {
+public class CS445_Project {
     
     private FPCameraController fp;
     private DisplayMode displayMode;
@@ -57,7 +57,7 @@ public class CS445checkpoint1 {
             }
         }
         Display.setDisplayMode(displayMode);
-        Display.setTitle("CS 445 Project Checkpoint 1");
+        Display.setTitle("CS 445 Project");
         Display.create();
     }
     
@@ -100,7 +100,7 @@ public class CS445checkpoint1 {
     
     //This is the Main method
     public static void main(String[] args) {
-        CS445checkpoint1 cubeWindow = new CS445checkpoint1();
+        CS445_Project cubeWindow = new CS445_Project();
         cubeWindow.start();
     }
     
