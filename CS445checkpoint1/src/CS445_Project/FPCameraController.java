@@ -41,7 +41,7 @@ public class FPCameraController {
         position.x = 10f;
         position.y = -60f;
         position.z = -30f;
-        lPosition = new Vector3f(x, y, -z);
+        lPosition = new Vector3f(x, y, z);
         lPosition.x = 30f;
         lPosition.y = 70f;
         lPosition.z = 30f;
@@ -162,6 +162,9 @@ public class FPCameraController {
         long time = 0;
         float mouseSensitivity = 0.09f;
         float movementSpeed = .35f;
+        float lightMovement = .05f;
+        boolean waxing = true;
+        
         //hide the mouse
         Mouse.setGrabbed(true);
         
@@ -237,6 +240,23 @@ public class FPCameraController {
             
             if (Keyboard.isKeyDown(Keyboard.KEY_I)) {
                 camera.moveLightXPlus(movementSpeed);
+            }
+            
+            
+            if(waxing){
+                if(camera.lPosition.z < 65.0f){
+                    camera.moveLightZPlus(lightMovement);
+                }
+                else{
+                    waxing = false;
+                }
+            }else{
+                if(camera.lPosition.z > -1.0f){
+                    camera.moveLightZMinus(lightMovement);
+                }
+                else{
+                    waxing = true;
+                }
             }
             
             //set the modelview matrix back to the identity
