@@ -94,6 +94,7 @@ public class FPCameraController {
         position.z += zOffset;
     }
     
+    //moves light source in the negetive z direction
     public void moveLightZMinus(float distance){
         FloatBuffer lightPosition = BufferUtils.createFloatBuffer(4);
         lightPosition.put(lPosition.x).put(
@@ -101,6 +102,7 @@ public class FPCameraController {
         glLight(GL_LIGHT0, GL_POSITION, lightPosition);
     }
     
+    //moves the light source in the positive z direction
     public void moveLightZPlus(float distance){
         FloatBuffer lightPosition = BufferUtils.createFloatBuffer(4);
         lightPosition.put(lPosition.x).put(
@@ -108,7 +110,7 @@ public class FPCameraController {
         glLight(GL_LIGHT0, GL_POSITION, lightPosition);
     }
     
-    
+    //moves the light source in the positive X direction
     public void moveLightXPlus(float distance){
         FloatBuffer lightPosition = BufferUtils.createFloatBuffer(4);
         lightPosition.put(lPosition.x+=distance).put(
@@ -116,6 +118,7 @@ public class FPCameraController {
         glLight(GL_LIGHT0, GL_POSITION, lightPosition);
     }
     
+    //moves the light source in the negative x direction
     public void moveLightXMinus(float distance){
         FloatBuffer lightPosition = BufferUtils.createFloatBuffer(4);
         lightPosition.put(lPosition.x-=distance).put(
@@ -226,23 +229,31 @@ public class FPCameraController {
                 camera.moveDown(movementSpeed);
             }
             
+            //user can use J key to move light source 
+            //in the negative Z direction
             if (Keyboard.isKeyDown(Keyboard.KEY_J)) {
                 camera.moveLightZMinus(movementSpeed);
             }
             
+            //user can use the L key to move the light source 
+            //in the positive Z direction
             if (Keyboard.isKeyDown(Keyboard.KEY_L)) {
                 camera.moveLightZPlus(movementSpeed);
             }
             
+            //user can use the K key to move the light source 
+            //in the negative X direction.
             if (Keyboard.isKeyDown(Keyboard.KEY_K)) {
                 camera.moveLightXMinus(movementSpeed);
             }
             
+            // user can use the I key to move the light source 
+            // in the positive X direction.
             if (Keyboard.isKeyDown(Keyboard.KEY_I)) {
                 camera.moveLightXPlus(movementSpeed);
             }
             
-            
+            //The light source creates a waxing and waning day/night cycle.
             if(waxing){
                 if(camera.lPosition.z < 65.0f){
                     camera.moveLightZPlus(lightMovement);

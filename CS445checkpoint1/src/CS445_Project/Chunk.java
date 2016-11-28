@@ -10,8 +10,11 @@
 * date last modified: 11/14/2016
 *
 * purpose: Following the classroom demonstration, this class
-* builds a chunk of random block composition and a jagged top 
-* defined by a Simplex Noise map.  
+* generates the chunk. Uses simplex noise algorithm to generate a height 
+* map.  Then sets bottom layer to bedrock, topped with stone until
+* 2 blocks down from top. Then a layer of dirt topped with grass.  Water is 
+* placed in the lowest points and sandy beaches and lake beds are added 
+* around water.  
 ****************************************************************/ 
 
 package CS445_Project;
@@ -37,8 +40,7 @@ public class Chunk {
     private int VBOTextureHandle;
     private Texture texture;
 
-    
-    
+    //render method
     public void render(){
         glPushMatrix();
             glBindBuffer(GL_ARRAY_BUFFER, VBOVertexHandle);
@@ -52,6 +54,7 @@ public class Chunk {
         glPopMatrix();
     }
     
+    //creates the height map for the top of the chunk
     public void rebuildMesh(float startX, float startY, float startZ) {
         VBOColorHandle = glGenBuffers();
         VBOVertexHandle = glGenBuffers();
@@ -97,6 +100,7 @@ public class Chunk {
         glBindBuffer(GL_ARRAY_BUFFER, 0);
     }   
 
+    //sets base color for blocks
     private float[] createCubeVertexCol(float[] CubeColorArray) {
         float[] cubeColors = new float[CubeColorArray.length * 4 * 6];
         for (int i = 0; i < cubeColors.length; i++) {
@@ -105,7 +109,8 @@ public class Chunk {
         }
         return cubeColors;
     }
-
+    
+    //returns an array of vertexes for a default cube.
     public static float[] createCube(float x, float y, float z) {
         int offset = CUBE_LENGTH / 2;
         return new float[] {
@@ -141,11 +146,13 @@ public class Chunk {
             x + offset, y - offset, z 
         };
     }
-
+    
+    //returns black for whatever block color is requested.
     private float[] getCubeColor(Block block) {
         return new float[] { 1, 1, 1 };
     }
-
+    
+    //Applies texture to cube according to its type.
     public static float[] createTexCube(float x, float y, Block block) {
         float offset = (1024f/16)/1024f;
         switch (block.GetID()) {
@@ -384,6 +391,11 @@ public class Chunk {
         }
     }
     
+    //Generates the chunck. Uses simplex noise algorithm to generate a height 
+    //map.  Then sets bottom layer to bedrock, topped with stone until
+    //2 blocks down from top. Then a layer of dirt topped with grass.  Water is 
+    //placed in the lowest points and sandy beaches and lake beds are added 
+    //arround water.
     public Chunk(int startX, int startY, int startZ) {
         try{texture = TextureLoader.getTexture("PNG",
             ResourceLoader.getResourceAsStream("terrain.png"));
@@ -469,15 +481,13 @@ public class Chunk {
                 }
             }
         }
-        
-        
+
         VBOColorHandle = glGenBuffers();
         VBOVertexHandle = glGenBuffers();
         VBOTextureHandle = glGenBuffers();
         StartX = startX;
         StartY = startY;
         StartZ = startZ;
-        //rebuildMesh(startX, startY, startZ);
         
         VertexColorData.flip();
         VertexPositionData.flip();
