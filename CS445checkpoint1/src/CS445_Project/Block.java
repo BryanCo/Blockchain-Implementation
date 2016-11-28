@@ -41,27 +41,34 @@ public class Block {
         }
     }
 
+    //This is the Constructor 
     public Block(BlockType type){
         Type= type;
     }
     
+    //Added to allow changing the block type
     public void setBlockType(BlockType type){
         Type= type;
     }
+    
+    //move or place the block
     public void setCoords(float x, float y, float z){
         this.x = x;
         this.y = y;
         this.z = z;
     }
 
+    //returns active state
     public boolean IsActive() {
         return IsActive;
     }
     
+    //allows active state to be changed 
     public void SetActive(boolean active){
         IsActive=active;
     }
     
+    //returns the blocks type
     public int GetID(){
         return Type.GetID();
     }
