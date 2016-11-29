@@ -33,7 +33,8 @@ public class FPCameraController {
     private Vector3f lPosition = null;
     private float yaw = 90.0f;
     private float pitch = 30.0f;
-    private Chunk chunk;
+    private Chunk[] chunks;
+    private static final int CHUNK_COUNT = 5;
     
     //this is the constructor
     public FPCameraController(float x, float y, float z){
@@ -45,7 +46,14 @@ public class FPCameraController {
         lPosition.x = 30f;
         lPosition.y = 70f;
         lPosition.z = 30f;
-        chunk = new Chunk(0,0,0);
+        
+        //Generate multiple chunks, n * n
+        chunks = new Chunk[CHUNK_COUNT * CHUNK_COUNT];
+        for (int i = 0; i < CHUNK_COUNT; ++i) {
+            for (int k = 0; k < CHUNK_COUNT; ++k) {
+                chunks[i * CHUNK_COUNT + k] = new Chunk(Chunk.CHUNK_SIZE * Chunk.CUBE_LENGTH * i, 0, Chunk.CHUNK_SIZE * Chunk.CUBE_LENGTH * k);
+            }
+        }
     }
     
     //increment the camera's current yaw rotation
@@ -278,8 +286,10 @@ public class FPCameraController {
             
             glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
             
-            //you would draw your scene here.
-            chunk.render();
+            //Render all chunks
+            for (Chunk chunk : chunks) {
+                chunk.render();
+            }
             
             //draw the buffer to the screen
             Display.update();
@@ -334,4 +344,3 @@ public class FPCameraController {
         }
     }
 }
-  
