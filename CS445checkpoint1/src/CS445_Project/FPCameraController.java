@@ -263,7 +263,7 @@ public class FPCameraController {
             
             //The light source creates a waxing and waning day/night cycle.
             if(waxing){
-                if(camera.lPosition.z < 65.0f){
+                if(camera.lPosition.z < 300.0f){
                     camera.moveLightZPlus(lightMovement);
                 }
                 else{
