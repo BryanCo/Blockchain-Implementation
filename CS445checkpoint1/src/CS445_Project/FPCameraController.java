@@ -6,16 +6,12 @@
 *       Zahy Abou-Diab 
 * class: CS 445 - Computer Graphics
 *
-* assignment: Project Checkpoint 2
-* date last modified: 11/14/2016
+* assignment: CS445-Project
+* date last modified: 11/28/2016
 *
-* purpose: At this checkpoint the program creates a window with 
-* a chunk.  The top layer of the chunk is randomly generated 
-* using Simplex Noise. The cubes are textured with the given
-* texture map.
-* 
-* This is largely repurposed, but modified code from 
-* the class slides.
+* purpose: This class provides the camera and light source code.
+* Most importantly it also provides the game_loop which is the 
+* render loop and also user input and environmental control.
 ****************************************************************/ 
 package CS445_Project;
 
@@ -155,6 +151,8 @@ public class FPCameraController {
         glLight(GL_LIGHT0, GL_POSITION, lightPosition);
     }
     
+    //This is the render loop, but it also allows for user input and envirnmental 
+    //changes.
     public void gameLoop() {
         
         FPCameraController camera = new FPCameraController(0, 0, 0);
@@ -287,51 +285,4 @@ public class FPCameraController {
         }
         Display.destroy();
     }
-        
-
-        
-    private void render() {
-        try{
-            glBegin(GL_QUADS);
-                //front
-                glColor3f(0.0f,0.0f,1.0f);
-                glVertex3f( 1.0f,-1.0f, -1.0f);
-                glVertex3f( 1.0f, 1.0f, -1.0f);
-                glVertex3f(-1.0f, 1.0f, -1.0f);
-                glVertex3f(-1.0f,-1.0f, -1.0f);
-                //back
-                glColor3f(0.0f,1.0f,0.0f);
-                glVertex3f(-1.0f,-1.0f, 1.0f);
-                glVertex3f(-1.0f, 1.0f, 1.0f);
-                glVertex3f( 1.0f, 1.0f, 1.0f);
-                glVertex3f( 1.0f,-1.0f, 1.0f);
-                //top
-                glColor3f(0.0f,1.0f,1.0f);
-                glVertex3f( 1.0f, 1.0f, 1.0f);
-                glVertex3f( 1.0f, 1.0f,-1.0f);
-                glVertex3f(-1.0f, 1.0f,-1.0f);
-                glVertex3f(-1.0f, 1.0f, 1.0f);
-                //bottom
-                glColor3f(1.0f,0.0f,0.0f);
-                glVertex3f( 1.0f,-1.0f,-1.0f);
-                glVertex3f( 1.0f,-1.0f, 1.0f);
-                glVertex3f(-1.0f,-1.0f, 1.0f);
-                glVertex3f(-1.0f,-1.0f,-1.0f);
-                //left
-                glColor3f(1.0f,0.0f,1.0f);
-                glVertex3f( 1.0f,-1.0f,-1.0f);
-                glVertex3f( 1.0f, 1.0f,-1.0f);
-                glVertex3f(1.0f, 1.0f,1.0f);
-                glVertex3f( 1.0f, -1.0f, 1.0f);
-                //right
-                glColor3f(1.0f,1.0f,0.0f);
-                glVertex3f(-1.0f,-1.0f, 1.0f);
-                glVertex3f(-1.0f, 1.0f, 1.0f);
-                glVertex3f(-1.0f, 1.0f,-1.0f);
-                glVertex3f(-1.0f,-1.0f,-1.0f);
-            glEnd();
-        }catch(Exception e){
-        }
-    }
 }
-  

@@ -2,7 +2,7 @@
 * file: SimplexNoise.java  
 * class: CS 445 - Computer Graphics
 *
-* assignment: Project Checkpoint 2
+* assignment: CS445-Project
 * date last modified: 11/14/2016
 * 
 * This file was provided by the professor!

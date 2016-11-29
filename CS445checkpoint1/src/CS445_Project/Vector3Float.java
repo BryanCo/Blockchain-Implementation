@@ -6,7 +6,7 @@
 *       Zahy Abou-Diab 
 * class: CS 445 - Computer Graphics
 *
-* assignment: Project Checkpoint 2
+* assignment: CS445-Project
 * date last modified: 10/31/2016
 *
 * purpose: This code was repurposed from the in class slide.

@@ -6,8 +6,8 @@
 *       Zahy Abou-Diab  
 * class: CS 445 - Computer Graphics
 *
-* assignment: Project Checkpoint 2
-* date last modified: 11/14/2016
+* assignment: CS445-Project
+* date last modified: 11/28/2016
 *
 * purpose: Following the classroom demonstration, this class
 * generates the chunk. Uses simplex noise algorithm to generate a height 

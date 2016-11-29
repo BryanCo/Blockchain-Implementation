@@ -6,8 +6,8 @@
 *       Zahy Abou-Diab  
 * class: CS 445 - Computer Graphics
 *
-* assignment: Project Checkpoint 2
-* date last modified: 11/14/2016
+* assignment: CS445-Project
+* date last modified: 11/28/2016
 *
 * purpose: This class defines the Block object.
 ****************************************************************/ 
@@ -19,6 +19,7 @@ public class Block {
     private boolean IsActive;
     private BlockType Type;
     private float x,y,z;
+    
     
     public enum BlockType
     {

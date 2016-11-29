@@ -6,13 +6,14 @@
 *       Zahy Abou-Diab  
 * class: CS 445 - Computer Graphics
 *
-* assignment: Project Checkpoint 2
-* date last modified: 11/14/2016
+* assignment: CS445-Project
+* date last modified: 11/28/2016
 *
-* purpose: At this checkpoint the program creates a window with 
-* a chunk.  The top layer of the chunk is randomly generated 
-* using Simplex Noise. The cubes are textured with the given
-* texture map.
+* purpose: This program creates a window with a randomly generated
+* "Mincraft" style chunk.  The light source slowly moves to create 
+* a waxing and waning day/night cycle.  The user can use the 
+* WASD/shift/space keys and mouse to move the camera.  The IJKL keys 
+* can be used to move the light source.
 ****************************************************************/ 
 
 package CS445_Project;
