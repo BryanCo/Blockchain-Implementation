@@ -10,10 +10,12 @@
 * date last modified: 11/28/2016
 *
 * purpose: This program creates a window with a randomly generated
-* "Mincraft" style chunk.  The light source slowly moves to create 
-* a waxing and waning day/night cycle.  The user can use the 
-* WASD/shift/space keys and mouse to move the camera.  The IJKL keys 
-* can be used to move the light source.
+* "Minecraft" style terrain.  
+* 
+* Additional Features: 
+* 1) Support for multiple chunks.
+* 2) The light source slowly moves to create a waxing and waning day/night cycle.  
+* 3) The user can use the IJKL keys to move the light source.
 ****************************************************************/ 
 
 package CS445_Project;
