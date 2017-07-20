@@ -12,7 +12,7 @@
 * purpose: This code was repurposed from the in class slide.
 ****************************************************************/ 
 
-package CS445_Project;
+package FlyweightExample;
 
 public class Vector3Float {
     public float x, y, z;

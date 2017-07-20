@@ -13,7 +13,7 @@
 * Most importantly it also provides the game_loop which is the 
 * render loop and also user input and environmental control.
 ****************************************************************/ 
-package CS445_Project;
+package FlyweightExample;
 
 import java.nio.FloatBuffer;
 import org.lwjgl.BufferUtils;
@@ -42,12 +42,13 @@ public class FPCameraController {
         lPosition.x = 30f;
         lPosition.y = 70f;
         lPosition.z = 30f;
+        BlockFactory blockFactory = new BlockFactory();
         
         //Generate multiple chunks, n * n
         chunks = new Chunk[CHUNK_COUNT * CHUNK_COUNT];
         for (int i = 0; i < CHUNK_COUNT; ++i) {
             for (int k = 0; k < CHUNK_COUNT; ++k) {
-                chunks[i * CHUNK_COUNT + k] = new Chunk(Chunk.CHUNK_SIZE * Chunk.CUBE_LENGTH * i, 0, Chunk.CHUNK_SIZE * Chunk.CUBE_LENGTH * k);
+                chunks[i * CHUNK_COUNT + k] = new Chunk(Chunk.CHUNK_SIZE * Chunk.CUBE_LENGTH * i, 0, Chunk.CHUNK_SIZE * Chunk.CUBE_LENGTH * k, blockFactory);
             }
         }
     }
@@ -163,7 +164,7 @@ public class FPCameraController {
     //changes.
     public void gameLoop() {
         
-        FPCameraController camera = new FPCameraController(0, 0, 0);
+        //FPCameraController camera = new FPCameraController(0, 0, 0);
         float dx = 0.0f;
         float dy = 0.0f;
         float dt = 0.0f; //length of frame
@@ -193,10 +194,10 @@ public class FPCameraController {
             dy = Mouse.getDY();
             
             //control camera yaw from x movement of the mouse
-            camera.yaw(dx * mouseSensitivity);
+            this.yaw(dx * mouseSensitivity);
             
             //control camera pitch from y movement of the mouse
-            camera.pitch(dy * mouseSensitivity);
+            this.pitch(dy * mouseSensitivity);
             
             //when passing in the distance to move
             //we multiply movementSpeed by dt. This is a time scale
@@ -206,70 +207,70 @@ public class FPCameraController {
             //move forward
             if (Keyboard.isKeyDown(Keyboard.KEY_W))
             {
-                camera.walkForward(movementSpeed);
+                this.walkForward(movementSpeed);
             }
             
             //move backwards
             if (Keyboard.isKeyDown(Keyboard.KEY_S))
             {
-                camera.walkBackwards(movementSpeed);
+                this.walkBackwards(movementSpeed);
             }
             
             //strafe left
             if (Keyboard.isKeyDown(Keyboard.KEY_A)){
-                camera.strafeLeft(movementSpeed);
+                this.strafeLeft(movementSpeed);
             }
             
             //strafe right
             if (Keyboard.isKeyDown(Keyboard.KEY_D)){ 
-                camera.strafeRight(movementSpeed);
+                this.strafeRight(movementSpeed);
             }
             
             //move up
             if (Keyboard.isKeyDown(Keyboard.KEY_SPACE)){
-                camera.moveUp(movementSpeed);
+                this.moveUp(movementSpeed);
             }
             
             //move down
             if (Keyboard.isKeyDown(Keyboard.KEY_LSHIFT)) {
-                camera.moveDown(movementSpeed);
+                this.moveDown(movementSpeed);
             }
             
             //user can use J key to move light source 
             //in the negative Z direction
             if (Keyboard.isKeyDown(Keyboard.KEY_J)) {
-                camera.moveLightZMinus(movementSpeed);
+                this.moveLightZMinus(movementSpeed);
             }
             
             //user can use the L key to move the light source 
             //in the positive Z direction
             if (Keyboard.isKeyDown(Keyboard.KEY_L)) {
-                camera.moveLightZPlus(movementSpeed);
+                this.moveLightZPlus(movementSpeed);
             }
             
             //user can use the K key to move the light source 
             //in the negative X direction.
             if (Keyboard.isKeyDown(Keyboard.KEY_K)) {
-                camera.moveLightXMinus(movementSpeed);
+                this.moveLightXMinus(movementSpeed);
             }
             
             // user can use the I key to move the light source 
             // in the positive X direction.
             if (Keyboard.isKeyDown(Keyboard.KEY_I)) {
-                camera.moveLightXPlus(movementSpeed);
+                this.moveLightXPlus(movementSpeed);
             }
             
             //The light source creates a waxing and waning day/night cycle.
             if(waxing){
-                if(camera.lPosition.z < 300.0f){
-                    camera.moveLightZPlus(lightMovement);
+                if(this.lPosition.z < 300.0f){
+                    this.moveLightZPlus(lightMovement);
                 }
                 else{
                     waxing = false;
                 }
             }else{
-                if(camera.lPosition.z > -1.0f){
-                    camera.moveLightZMinus(lightMovement);
+                if(this.lPosition.z > -1.0f){
+                    this.moveLightZMinus(lightMovement);
                 }
                 else{
                     waxing = true;
@@ -280,7 +281,7 @@ public class FPCameraController {
             glLoadIdentity();
             
             //look through the camera before you draw anything
-            camera.lookThrough();
+            this.lookThrough();
             
             glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
             

@@ -8,7 +8,7 @@
 * This file was provided by the professor!
 ****************************************************************/ 
 
-package CS445_Project;
+package FlyweightExample;
 
 import java.util.Random;
 

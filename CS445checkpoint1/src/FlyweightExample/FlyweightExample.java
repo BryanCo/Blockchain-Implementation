@@ -18,7 +18,7 @@
 * 3) The user can use the IJKL keys to move the light source.
 ****************************************************************/ 
 
-package CS445_Project;
+package FlyweightExample;
 
 import org.lwjgl.opengl.Display;
 import org.lwjgl.opengl.DisplayMode;
@@ -27,7 +27,7 @@ import org.lwjgl.util.glu.GLU;
 import java.nio.FloatBuffer;
 import org.lwjgl.BufferUtils;
 
-public class CS445_Project {
+public class FlyweightExample {
     
     private FPCameraController fp;
     private DisplayMode displayMode;
@@ -60,7 +60,7 @@ public class CS445_Project {
             }
         }
         Display.setDisplayMode(displayMode);
-        Display.setTitle("CS 445 Project");
+        Display.setTitle("Flyweight Example");
         Display.create();
     }
     
@@ -103,7 +103,7 @@ public class CS445_Project {
     
     //This is the Main method
     public static void main(String[] args) {
-        CS445_Project cubeWindow = new CS445_Project();
+        FlyweightExample cubeWindow = new FlyweightExample();
         cubeWindow.start();
     }
     

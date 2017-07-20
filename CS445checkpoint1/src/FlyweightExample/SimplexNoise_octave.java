@@ -8,7 +8,7 @@
 * This file was provided by the professor!
 ****************************************************************/
 
-package CS445_Project;
+package FlyweightExample;
 import java.awt.Color;
 import java.awt.image.BufferedImage;
 import java.io.File;
